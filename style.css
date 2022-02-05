@@ -40,3 +40,15 @@ main {
   display: flex;
   align-items: center;
 }
+div.crypto-info > span {
+  font-size: 20px;
+  margin-left: 10px;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+div.crypto > p {
+  margin: 0;
+  padding: 3px 0;
+}

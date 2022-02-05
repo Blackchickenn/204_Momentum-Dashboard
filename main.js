@@ -2,6 +2,7 @@ const pictureAuthor = document.getElementById("author")
 const cryptoInfo = document.getElementById("crypto-info")
 
 
+
 fetch ("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=animals")
     .then (response => response.json())
     .then (data => {
@@ -21,7 +22,12 @@ fetch("https://api.coingecko.com/api/v3/coins/ethereum")
         <img src=${data.image.small}/>
         <span>${data.name}</span>
         `
-
+        document.getElementById("crypto").innerHTML += `
+        <p>🎯 : ${data.market_data.current_price.eur}€</p>
+        <p>👆 : ${data.market_data.high_24h.eur}€</p>
+        <p>👇 : ${data.market_data.low_24h.eur}€</p>
+        `
+        
     })
  
     // .catch(error => {
