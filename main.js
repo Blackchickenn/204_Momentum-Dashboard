@@ -1,7 +1,7 @@
 const pictureAuthor = document.getElementById("author")
 const cryptoInfo = document.getElementById("crypto-info")
-
-
+const weatherIcon = document.getElementById("weather")
+const wIconTemp = document.getElementById("weather-icon-temp")
 
 fetch ("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
 .then (response => response.json())
@@ -14,7 +14,7 @@ fetch ("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&qu
     document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1583265555494-49aa9e8c80b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDM3MzUwNjA&ixlib=rb-1.2.1&q=80&w=1080)`
 })
 
-fetch("https://api.coingecko.com/api/v3/coins/ethereum")
+fetch("https://api.coingecko.com/api/v3/coins/ethereum")  //api for crypto - Etherum
 .then(response => response.json())
 .then(data => {
     console.log(data)
@@ -32,7 +32,7 @@ fetch("https://api.coingecko.com/api/v3/coins/ethereum")
     document.getElementById("crypto").textContent = `${noAPI}`
 })
 navigator.geolocation.getCurrentPosition(position => {
-    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
         .then(res => {
             if (!res.ok) {
                 throw Error("Weather data not available")
@@ -41,14 +41,24 @@ navigator.geolocation.getCurrentPosition(position => {
         })
         .then(data => {
             console.log(data)
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+            wIconTemp.innerHTML = `
+            <img src=${iconUrl} />
+            <p class="temperature">${Math.round(data.main.temp)}°C</p>
+            `
+            document.getElementById("weather-city").innerHTML = `
+            <p>${data.name}</p>
+            `
+
+            
         })
         .catch(err => console.log(err))
 });
 
 
 
-// function updateTime(){   
-// let currentTime = new Date()
-// document.getElementById("current-time").textContent = currentTime.toLocaleTimeString("en-eu", {timeStyle: "short"})
-// }
-// setInterval(updateTime, 1000);
+function updateTime(){   
+let currentTime = new Date()
+document.getElementById("current-time").textContent = currentTime.toLocaleTimeString("en-eu", {timeStyle: "short"})
+}
+setInterval(updateTime, 1000);

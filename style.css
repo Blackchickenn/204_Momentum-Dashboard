@@ -52,3 +52,20 @@ div.crypto > p {
   margin: 0;
   padding: 3px 0;
 }
+.weather {
+  display: flex;
+  flex-direction: column;
+}
+.weather-icon-temp {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  /* margin-right: 40px; */
+}
+.weather-city {
+  font-size: 1.2rem;
+  margin-top: -20px;
+}
+.temperature {
+  font-size: 2rem;
+}
